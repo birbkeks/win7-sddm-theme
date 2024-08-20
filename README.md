@@ -1,4 +1,4 @@
-# Windows 10 Login Screen SDDM Theme
+# Windows 7 Login Screen SDDM Theme
 
 ## Table of contents
 
@@ -60,12 +60,12 @@ chmod +x install.sh
 3. Click on "Get New..." and search for this theme, and install it from there.
 
 ### Manual installation on KDE Plasma desktop environment:
-1- You can download this theme from [github releases](https://github.com/birbkeks/win7-sddm-theme/releases) or from [store.kde.org](https://store.kde.org/p/2170777) page! <br>
+1- You can download this theme from [github releases](https://github.com/birbkeks/win7-sddm-theme/releases) or from [store.kde.org](https://store.kde.org/p/2192528/) page! <br>
 2- Extract "win7-sddm-theme.tar.gz" to `/usr/share/sddm/themes`. <br>
 3- Edit /etc/sddm.conf.d/kde_settings.conf  and under `[Theme]`, change `Current=` to `Current=win7-sddm-theme`.
 
 ### If you're not using KDE Plasma:
-1- You can download this theme from [github releases](https://github.com/birbkeks/win7-sddm-theme/releases) or from [store.kde.org](https://store.kde.org/p/2170777) page! <br>
+1- You can download this theme from [github releases](https://github.com/birbkeks/win7-sddm-theme/releases) or from [store.kde.org](https://store.kde.org/p/2192528/) page! <br>
 2- Extract "win7-sddm-theme.tar.gz" to `/usr/share/sddm/themes`. <br>
 3- Edit /etc/sddm.conf  and under `[Theme]`, change `Current=` to `Current=win7-sddm-theme`.
 
