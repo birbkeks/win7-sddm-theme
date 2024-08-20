@@ -5,14 +5,13 @@ Button {
     id: loginButton
     hoverEnabled: true
     width: 30
-    height: 29
+    height: 30
     x: passwordField.width
     y: -5
 
     background: Image {
         id: loginbuttonBackground
-        width: parent.width
-        height: parent.width
+        smooth: false
 
         source: {
             if (loginButton.pressed) return "../Assets/go-pressed.png"
@@ -20,6 +19,4 @@ Button {
             return "../Assets/go.png"
         }
     }
-
-
 }

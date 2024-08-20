@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 2.15
+import QtMultimedia
 import "Components"
 
 Item {
@@ -29,6 +30,13 @@ Item {
         width: parent.width
         height: parent.height
 
+        MediaPlayer {
+            id: startupSound
+            autoPlay: true
+            source: Qt.resolvedUrl("Assets/Startup-Sound.wav")
+            audioOutput: AudioOutput {}
+        }
+
         Image {
             anchors.fill: parent
             width: parent.width
@@ -41,6 +49,14 @@ Item {
                 color: "transparent"
             }
         }
+    }
+
+    Image {
+        source: "Assets/branding.png"
+
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 25
+        anchors.horizontalCenter: parent.horizontalCenter
     }
 
     Item {
@@ -60,6 +76,7 @@ Item {
 
     Item {
         id: leftPanel
+        z: 9
 
         anchors {
             bottom: parent.bottom

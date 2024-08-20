@@ -13,73 +13,53 @@ Item {
         delegate: ItemDelegate {
             id: sessionEntry
             width: parent.width
-            height: 36
+            height: 25
             highlighted: sessionList.currentIndex == index
             contentItem: Text {
                 renderType: Text.NativeRendering
+                font.weight: Font.Normal
                 font.family: Qt.resolvedUrl("../fonts") ? "Segoe UI" : segoeui.name
                 font.pointSize: 10
                 verticalAlignment: Text.AlignVCenter
                 color: "black"
                 text: name
 
-                Text {
-                    id: offon
-                    text: "Off"
-                    color: "black"
-                    font.family: Qt.resolvedUrl("../fonts") ? "Segoe UI" : segoeui.name
-                    font.weight: Font.Bold
-                    font.pointSize: 10
-                    renderType: Text.NativeRendering
-
-                    anchors {
-                        verticalCenter: parent.verticalCenter
-                        bottom: parent.top
-                        bottomMargin: 5
-                    }
-                }
+                leftPadding: 20
 
                 Button {
-                    id: sessionLever
-                    width: 46
-                    height: 15
+                    id: checkPool
+                    width: 13
+                    height: 13
                     z: 3
 
+                    hoverEnabled: true
+
                     anchors {
-                        top: parent.bottom
-                        topMargin: 7
-                        right: parent.right
-                        rightMargin: 7
+                        right: parent.left
+                        rightMargin: -13
                     }
 
-                    background: Rectangle {
-                        id: sessionLeverBackground
-                        color: "#A6A6A6"
-                        border.color: "white"
-                        border.width: 1
-                    }
+                    Image {
+                        id: cimg
 
-                    MouseArea {
-                        anchors.fill: parent
+                        source: {
+                            if (checkbox.hovered && sessionEntry.focus) return "../Assets/cbox-hover-focus.png"
+                            if (checkbox.hovered && !sessionEntry.focus) return "../Assets/cbox-hover.png"
+                            if (!checkbox.hovered && sessionEntry.focus) return "../Assets/cbox-focus.png"
 
-                        onClicked: {
-                            sessionList.currentIndex = index
+                            return "../Assets/cbox.png"
                         }
                     }
 
                     Button {
-                        id: leftblackLever
-                        width: 12
-                        height: 19
+                        id: checkbox
+                        width: 13
+                        height: 13
 
-                        anchors {
-                            verticalCenter: parent.verticalCenter
-                            left: parent.left
-                            leftMargin: -2
-                        }
+                        hoverEnabled: true
 
                         background: Rectangle {
-                            color: "black"
+                            color: "transparent"
                         }
 
                         MouseArea {
@@ -90,95 +70,13 @@ Item {
                             }
                         }
                     }
-
-                    Button {
-                        id: rightblackLever
-                        width: 12
-                        height: 19
-                        visible: false
-
-                        anchors {
-                            verticalCenter: parent.verticalCenter
-                            right: parent.right
-                            rightMargin: -2
-                        }
-
-                        background: Rectangle {
-                            color: "black"
-                        }
-                    }
-
-                    MouseArea {
-                        anchors.fill: parent
-
-                        onClicked: {
-                            sessionList.currentIndex = index
-                        }
-                    }
-                }
-
-                Button {
-                    width: 50
-                    height: 19
-
-                    anchors {
-                        top: parent.bottom
-                        topMargin: 5
-                        right: parent.right
-                        rightMargin: 5
-                    }
-
-                    MouseArea {
-                        anchors.fill: parent
-
-                        onClicked: {
-                            sessionList.currentIndex = index
-                        }
-                    }
-
-                    background: Rectangle {
-                        id: leverBack
-                        color: "#A6A6A6"
-                    }
                 }
             }
 
             background: Rectangle {
                 id: sessionEntryBackground
-                color: "transparent"
+                color: "white"
             }
-
-            states: [
-                State {
-                    name: "focused"
-                    when: sessionEntry.focus
-                    PropertyChanges {
-                        target: sessionLeverBackground
-                        color: "#0078D5"
-                    }
-                    PropertyChanges {
-                        target: rightblackLever
-                        visible: true
-                    }
-                    PropertyChanges {
-                        target: leftblackLever
-                        visible: false
-                    }
-                    PropertyChanges {
-                        target: offon
-                        text: "On"
-                    }
-                },
-
-                State {
-                    name: "hovered"
-                    when: sessionLever.hovered
-                    PropertyChanges {
-                        target: sessionLeverBackground
-                        color: "#B5B5B5"
-                    }
-                }
-            ]
         }
     }
 
@@ -244,93 +142,185 @@ Item {
         }
 
         onClicked: {
-            sessionPopup.visible ? sessionPopup.close() : sessionPopup.open()
+            session.visible ? session.visible = false : session.visible = true
             sessionButtonTip.hide()
         }
     }
 
-    Popup {
-        id: sessionPopup
-        width: 175
-        y: Math.round(-sessionButton.height -(sessionPopup.height) + 25)
-        z: 3
-        topPadding: 5
-        bottomPadding: 15
-        leftPadding: 15
-        rightPadding: 15
+    Rectangle {
+        id: session
+        width: 506
+        height: 407
+        radius: 8
+        visible: false
 
-        background: Rectangle {
-            color: "white"
-            border.width: 1
-            border.color: "black"
+        y: -550
 
-            Button  {
-                id: screenKeyboard
-                width: parent.width - 2
-                height: 41
-                x: 1
-                y: 1
-                z: 3
+        Image {
+            source: "../Assets/sessions.png"
+        }
 
-                visible: false // disabled for now because i have no idea how to add on screen keyboard :3
-                enabled: false
+        Control {
+            id: sessionPopup
+            width: 500
+            height: 250
+            z: 3
 
-                Text {
-                    color: "black"
-                    text: "On-Screen Keyboard"
-                    renderType: Text.NativeRendering
-                    font.family: Qt.resolvedUrl("../fonts") ? "Segoe UI" : segoeui.name
-                    font.pointSize: 10
-                    anchors {
-                        verticalCenter: parent.verticalCenter
-                        left: parent.left
-                        leftMargin: 20
-                    }
+            leftInset: 50
+            leftPadding: 50
+
+            rightInset: 50
+            rightPadding: 50
+
+            bottomPadding: 5
+            bottomInset: 5
+
+            background: Rectangle {
+                color: "white"
+            }
+
+            contentItem: ListView {
+                id: sessionList
+                implicitHeight: contentHeight
+                model: sessionWrapper
+                currentIndex: sessionModel.lastIndex
+                clip: true
+                spacing: 20
+                interactive: sessionList.count > 6 ? true : false
+            }
+
+            anchors.top: parent.top
+            anchors.topMargin: 91
+        }
+
+        Drag.active: dragArea.drag.active
+        Drag.hotSpot.x: 10
+        Drag.hotSpot.y: 10
+
+        MouseArea {
+            id: dragArea
+            anchors.fill: parent
+
+            drag.target: parent
+        }
+
+        Button {
+            id: closebut
+
+            width: 31
+            height: 16
+
+            hoverEnabled: true
+
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+
+            anchors.top: parent.top
+            anchors.topMargin: 10
+
+            Image {
+                source: {
+                    if (closebut.hovered) return "../Assets/close-hover.png"
+                    return "../Assets/close.png"
                 }
+            }
 
-                states: [
-                    State {
-                        name: "hovered"
-                        when: screenKeyboard.hovered
-                        PropertyChanges {
-                            target: screenKeyboardBackground
-                            color: "#30000000"
-                        }
-                    }
-                ]
+            MouseArea {
+                anchors.fill: parent
 
-                background: Rectangle {
-                    id: screenKeyboardBackground
-                    color: "transparent"
+                onClicked: {
+                    session.visible = false
                 }
             }
         }
 
-        contentItem: ListView {
-            id: sessionList
-            implicitHeight: contentHeight + 20
-            model: sessionWrapper
-            currentIndex: sessionModel.lastIndex
-            clip: true
-            spacing: 25
-            interactive: false
-        }
+        Button {
+            id: apbut
 
-        enter: Transition {
-            NumberAnimation {
-                property: "opacity"
-                from: 0
-                to: 1
-                easing.type: Easing.OutCirc
+            width: 73
+            height: 20
+
+            hoverEnabled: true
+
+            anchors.right: parent.right
+            anchors.rightMargin: 19
+
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 19
+
+            Image {
+                source: {
+                    if (apbut.hovered) return "../Assets/apbutton-hover.png"
+                    return "../Assets/apbutton.png"
+                }
+            }
+
+            MouseArea {
+                anchors.fill: parent
+
+                onClicked: {
+                    session.visible = false
+                }
             }
         }
 
-        exit: Transition {
-            NumberAnimation {
-                property: "opacity"
-                from: 1
-                to: 0
-                easing.type: Easing.OutCirc
+        Button {
+            id: canbut
+
+            width: 73
+            height: 20
+
+            hoverEnabled: true
+
+            anchors.right: apbut.left
+            anchors.rightMargin: 5
+
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 19
+
+            Image {
+                source: {
+                    if (canbut.hovered) return "../Assets/canbutton-hover.png"
+                    return "../Assets/canbutton.png"
+                }
+            }
+
+            MouseArea {
+                anchors.fill: parent
+
+                onClicked: {
+                    session.visible = false
+                }
+            }
+        }
+
+        Button {
+            id: okbut
+
+            width: 73
+            height: 20
+
+            hoverEnabled: true
+
+            anchors.right: canbut.left
+            anchors.rightMargin: 5
+
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 19
+
+            Image {
+                source: {
+                    if (okbut.hovered) return "../Assets/okbutton-hover.png"
+                    return "../Assets/okbutton.png"
+                }
+            }
+
+            MouseArea {
+                anchors.fill: parent
+
+                onClicked: {
+                    session.visible = false
+                }
             }
         }
     }

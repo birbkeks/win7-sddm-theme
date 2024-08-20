@@ -26,8 +26,9 @@ TextField {
 
     background: Image {
         id: passFieldBackground
-        source: "../Assets/input.png"
-        x: -5
         width: passwordField.width + 10
+        x: -5
+
+        source: "../Assets/input.png"
     }
 }

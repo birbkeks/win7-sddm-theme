@@ -32,25 +32,20 @@ Item {
 
                 delay: 1000
                 timeout: 4800
-                leftPadding: 9
-                rightPadding: 9
-                topPadding: 7
-                bottomPadding: 7
+
+                width: 69
+                height: 11
+
                 y: shutdownButton.height + 5
                 z: 2
                 visible: shutdownButton.hovered
 
-                contentItem: Text {
-                    text: "Shut down"
-                    font.family: Qt.resolvedUrl("../fonts") ? "Segoe UI" : segoeui.name
-                    renderType: Text.NativeRendering
-                    color: "dimgray"
+                Image {
+                    source: "../Assets/shuttip.png"
                 }
 
                 background: Rectangle {
-                    color: "white"
-                    border.width: 1
-                    border.color: "dimgray"
+                    color: "transparent"
                 }
             }
 
@@ -99,25 +94,20 @@ Item {
 
                 delay: 1000
                 timeout: 4800
-                leftPadding: 9
-                rightPadding: 9
-                topPadding: 7
-                bottomPadding: 7
+
+                width: 112
+                height: 19
+
                 y: expandButton.height + 5
                 z: 2
                 visible: expandButton.hovered
 
-                contentItem: Text {
-                    text: "Shut down options"
-                    font.family: Qt.resolvedUrl("../fonts") ? "Segoe UI" : segoeui.name
-                    renderType: Text.NativeRendering
-                    color: "dimgray"
+                Image {
+                    source: "../Assets/moreshuttip.png"
                 }
 
                 background: Rectangle {
-                    color: "white"
-                    border.width: 1
-                    border.color: "dimgray"
+                    color: "transparent"
                 }
             }
 
@@ -146,18 +136,18 @@ Item {
 
     Popup {
         id: powerPopup
-        width: 148
-        height: rebootButton.height + sleepButton.height + poweroffButton.height + 6
-        x: Math.round((powerButton.width - width) / 2) - 15
-        y: -80
+        width: 147
+        height: 57
+        x: -61
+        y: -64
         z: 3
-        topPadding: 3
-        leftPadding: 1
-        rightPadding: 2
+
         background: Rectangle {
-            color: "white"
-            border.width: 1
-            border.color: "#555"
+            color: "transparent"
+        }
+
+        Image {
+            source:"../Assets/powerlist.png"
         }
 
         Button {
@@ -167,92 +157,21 @@ Item {
             hoverEnabled: true
 
             x: 3
+            y: 3
 
             background: Rectangle {
                 id: rebootButtonBackground
                 color: "transparent"
-                border.width: 0
-                border.color: "transparent"
-                radius: 4
             }
 
-            Text {
-                text: "Restart"
-                color: "black"
-
-                font.family: Qt.resolvedUrl("../fonts") ? "Segoe UI" : segoeui.name
-                font.pointSize: 9.5
-                leftPadding: 10
-                renderType: Text.NativeRendering
-
-                anchors {
-                    verticalCenter: rebootButton.verticalCenter
+            Image {
+                source: {
+                    if (rebootButton.hovered) return "../Assets/restart-hover.png"
+                    return "../Assets/restart.png"
                 }
             }
-
-            states: [
-                State {
-                    name: "hovered"
-                    when: rebootButton.hovered
-                    PropertyChanges {
-                        target: rebootButtonBackground
-                        color: "#253399FF"
-                        border.color: "#503399FF"
-                        border.width: 1
-                    }
-                }
-            ]
 
             onClicked: sddm.reboot()
-        }
-
-        Button {
-            id: sleepButton
-            width: 141
-            height: 22
-            hoverEnabled: true
-
-            anchors {
-                horizontalCenter: rebootButton.horizontalCenter
-                top: rebootButton.bottom
-            }
-
-            background: Rectangle {
-                id: sleepButtonBackground
-                color: "transparent"
-                border.width: 0
-                border.color: "transparent"
-                radius: 4
-            }
-
-            Text {
-                text: "Sleep"
-                color: "black"
-
-                font.family: Qt.resolvedUrl("../fonts") ? "Segoe UI" : segoeui.name
-                font.pointSize: 9.5
-                leftPadding: 10
-                renderType: Text.NativeRendering
-
-                anchors {
-                    verticalCenter: sleepButton.verticalCenter
-                }
-            }
-
-            states: [
-                State {
-                name: "hovered"
-                when: sleepButton.hovered
-                    PropertyChanges {
-                        target: sleepButtonBackground
-                        color: "#253399FF"
-                        border.color: "#503399FF"
-                        border.width: 1
-                    }
-                }
-            ]
-
-            onClicked: sddm.suspend()
         }
 
         Button {
@@ -261,45 +180,25 @@ Item {
             height: 22
             hoverEnabled: true
 
+            x: 3
+
             anchors {
-                horizontalCenter: sleepButton.horizontalCenter
-                top: sleepButton.bottom
+                horizontalCenter: rebootButton.horizontalCenter
+                top: rebootButton.bottom
+                topMargin: 8
             }
 
             background: Rectangle {
                 id: poweroffButtonBackground
                 color: "transparent"
-                border.width: 0
-                border.color: "transparent"
-                radius: 4
             }
 
-            Text {
-                text: "Shut down"
-                color: "black"
-
-                font.family: Qt.resolvedUrl("../fonts") ? "Segoe UI" : segoeui.name
-                font.pointSize: 9.5
-                leftPadding: 10
-                renderType: Text.NativeRendering
-
-                anchors {
-                    verticalCenter: poweroffButton.verticalCenter
+            Image {
+                source: {
+                    if (poweroffButton.hovered) return "../Assets/shutdown-hover.png"
+                    return "../Assets/shutdown.png"
                 }
             }
-
-            states: [
-                State {
-                name: "hovered"
-                when: poweroffButton.hovered
-                    PropertyChanges {
-                        target: poweroffButtonBackground
-                        color: "#253399FF"
-                        border.color: "#503399FF"
-                        border.width: 1
-                    }
-                }
-            ]
 
             onClicked: sddm.powerOff()
         }
