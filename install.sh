@@ -14,7 +14,7 @@ read -p ":: " input
 
 function sddm() {
 
-    sudo wget -P /usr/share/sddm/themes https://github.com/birbkeks/win7-sddm-theme/releases/download/1.2/win7-sddm-theme.tar.gz -nc
+    sudo wget -P /usr/share/sddm/themes https://github.com/birbkeks/win7-sddm-theme/releases/download/1.0/win7-sddm-theme.tar.gz -nc
 
     sudo tar -xzf /usr/share/sddm/themes/win7-sddm-theme.tar.gz -C /usr/share/sddm/themes
 
