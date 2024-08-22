@@ -91,6 +91,7 @@ Rectangle {
             elide: Text.ElideRight
             verticalAlignment: Text.AlignVCenter
             clip: true
+            font.kerning: false
 
             color: "white"
 
@@ -98,6 +99,15 @@ Rectangle {
                 horizontalCenter: img.horizontalCenter
                 top: img.bottom
                 topMargin: 18
+            }
+
+            layer.enabled: true
+            layer.effect: DropShadow {
+                verticalOffset: 1
+                horizontalOffset: 1
+                color: "black"
+                radius: 7
+                samples: 20
             }
         }
     }

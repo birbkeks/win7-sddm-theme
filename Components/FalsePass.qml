@@ -1,175 +1,113 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import Qt5Compat.GraphicalEffects
 
 FocusScope {
+
+    Image {
+        source: "../Assets/dialog-error.png"
+        anchors.right: falseText.left
+        anchors.rightMargin: 7
+        y: -6
+    }
 
     Text {
         id: falseText
         text: "The user name or password is incorrect."
         color: "white"
-        font.pointSize: 11
+        font.pointSize: 10
         font.family: Qt.resolvedUrl("../fonts") ? "Segoe UI" : segoeui.name
         renderType: Text.NativeRendering
-        x: -falseText.width / 2
+        x: -100
+
+        layer.enabled: true
+        layer.effect: DropShadow {
+            verticalOffset: 1
+            color: "#000"
+            radius: 7
+            samples: 20
+        }
     }
 
     Button {
         id: falseButton
         hoverEnabled: true
-        width: 120
-        height: 33
+        width: 92
+        height: 27
 
-        x: 1
-        y: 1
+        x: -45
+        y: 70
 
-        Text {
-            color: "white"
-            font.family: Qt.resolvedUrl("../fonts") ? "Segoe UI" : segoeui.name
-            text: "OK"
-            renderType: Text.NativeRendering
-            font.pointSize: 11
-            anchors.centerIn: parent
-        }
+        Image {
+            id: img
+            source: {
+                if (falseButton.hovered) return "../Assets/ok-hover.png"
 
-        anchors {
-            horizontalCenter: parent.horizontalCenter
-            topMargin: 25
-            top: falseText.bottom
-        }
-
-        background: Rectangle {
-            id: falseButtonBackground
-            color: "#35FFFFFF"
-            border.color: "#35FFFFFF"
-            border.width: 2
-        }
-
-        states: [
-            State {
-                name: "1hovered"
-                when: falseButton.hovered
-                PropertyChanges {
-                    target: falseButtonBackground
-                    border.color: "#90FFFFFF"
-                }
-            },
-            State {
-                name: "2hovered"
-                when: falseBg.hovered
-                PropertyChanges {
-                    target: falseButtonBackground
-                    border.color: "#90FFFFFF"
-                }
-            },
-            State {
-                name: "3hovered"
-                when: falseBg2.hovered
-                PropertyChanges {
-                    target: falseButtonBackground
-                    border.color: "#90FFFFFF"
-                }
-            }
-        ]
-
-        Button {
-            id: falseBg
-            hoverEnabled: true
-            width: 122
-            height: 35
-
-            x: -1
-            y: -1
-
-            background: Rectangle {
-                id: bgBackground
-                color: "transparent"
-                border.color: "black"
-                border.width: 1
+                return "../Assets/ok-focus.png"
             }
         }
 
-        Button {
-            id: falseBg2
-            hoverEnabled: true
-            focus: true
+        onClicked: {
+            falsePass.visible = false
 
-            x: -3
-            y: -3
+            rightPanel.visible = true
+            leftPanel.visible = true
 
-            width: 126
-            height: 39
+            opacitymask.visible = true
+            name.visible = true
 
-            background: Rectangle {
-                id: bg2Background
-                color: "transparent"
-                border.color: "white"
-                border.width: 2
-            }
+            containerimg.visible = true
 
-            onClicked: {
-                falsePass.visible = false
+            passwordField.visible = true
+            passwordField.enabled = true
+            passwordField.focus = true
 
-                rightPanel.visible = true
-                leftPanel.visible = true
+            switchUser.visible = listView2.count > 1 ? true : false
+            switchUser.enabled = listView2.count > 1 ? true : false
 
-                opacitymask.visible = true
-                name.visible = true
+            passwordField.text = ""
+        }
 
-                containerimg.visible = true
+        Keys.onReturnPressed: {
+            falsePass.visible = false
 
-                passwordField.visible = true
-                passwordField.enabled = true
-                passwordField.focus = true
+            rightPanel.visible = true
+            leftPanel.visible = true
 
+            opacitymask.visible = true
+            name.visible = true
 
+            containerimg.visible = true
 
-                switchUser.visible = listView2.count > 1 ? true : false
-                switchUser.enabled = listView2.count > 1 ? true : false
+            passwordField.visible = true
+            passwordField.enabled = true
+            passwordField.focus = true
 
-                passwordField.text = ""
-            }
+            switchUser.visible = listView2.count > 1 ? true : false
+            switchUser.enabled = listView2.count > 1 ? true : false
 
-            Keys.onReturnPressed: {
-                falsePass.visible = false
+            passwordField.text = ""
+        }
 
-                rightPanel.visible = true
-                leftPanel.visible = true
+        Keys.onEnterPressed: {
+            falsePass.visible = false
 
-                opacitymask.visible = true
-                name.visible = true
+            rightPanel.visible = true
+            leftPanel.visible = true
 
-                containerimg.visible = true
+            opacitymask.visible = true
+            name.visible = true
 
-                passwordField.visible = true
-                passwordField.enabled = true
-                passwordField.focus = true
+            containerimg.visible = true
 
-                switchUser.visible = listView2.count > 1 ? true : false
-                switchUser.enabled = listView2.count > 1 ? true : false
+            passwordField.visible = true
+            passwordField.enabled = true
+            passwordField.focus = true
 
-                passwordField.text = ""
-            }
+            switchUser.visible = listView2.count > 1 ? true : false
+            switchUser.enabled = listView2.count > 1 ? true : false
 
-            Keys.onEnterPressed: {
-                falsePass.visible = false
-
-                rightPanel.visible = true
-                leftPanel.visible = true
-
-                opacitymask.visible = true
-                name.visible = true
-
-                containerimg.visible = true
-
-                passwordField.visible = true
-                passwordField.enabled = true
-                passwordField.focus = true
-
-                switchUser.visible = listView2.count > 1 ? true : false
-                switchUser.enabled = listView2.count > 1 ? true : false
-
-                passwordField.text = ""
-            }
+            passwordField.text = ""
         }
     }
 }

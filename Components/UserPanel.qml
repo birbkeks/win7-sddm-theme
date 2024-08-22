@@ -90,11 +90,23 @@ FocusScope {
         font.pointSize: 20
         font.family: Qt.resolvedUrl("../fonts") ? "Segoe UI" : segoeui.name
         renderType: Text.NativeRendering
+        font.kerning: false
+
+        z: 4
 
         anchors {
             topMargin: 32
             horizontalCenter: icon.horizontalCenter
             top: icon.bottom
+        }
+
+        layer.enabled: true
+        layer.effect: DropShadow {
+            verticalOffset: 1
+            horizontalOffset: 1
+            color: "#99000000"
+            radius: 2
+            samples: 2
         }
     }
 
@@ -151,7 +163,8 @@ FocusScope {
             id: loginButton
             visible: true
 
-            x: passwordField.width + 10
+            x: passwordField.width + 8
+            y: -4
 
             onClicked: {
                 truePass.visible = true
@@ -181,7 +194,7 @@ FocusScope {
 
         anchors {
             top: parent.bottom
-            topMargin: 25
+            topMargin: 50
         }
     }
 
@@ -222,7 +235,7 @@ FocusScope {
 
         anchors {
             horizontalCenter: parent.horizontalCenter
-            topMargin: 25
+            topMargin: 5
             top: passwordField.bottom
         }
     }

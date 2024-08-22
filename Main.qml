@@ -52,7 +52,7 @@ Item {
     }
 
     Image {
-        source: "Assets/branding.png"
+        source: config.branding
 
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 25

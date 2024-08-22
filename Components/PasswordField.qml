@@ -6,8 +6,6 @@ TextField {
     focus: true
     visible: true
     selectByMouse: true
-    placeholderText: "Password"
-    placeholderTextColor: "#555"
 
     property alias text: passwordField.text
 
@@ -21,13 +19,24 @@ TextField {
     color: "black"
 
     horizontalAlignment: TextInput.AlignLeft
-    width: 223
-    height: 23
+    width: 217
+    height: 24
+
+    onTextChanged: {
+        if (passwordField.length > 0) {
+            passFieldBackground.source = "../Assets/input-type.png"
+        }
+
+        if (passwordField.length < 1) {
+            passFieldBackground.source = "../Assets/input.png"
+        }
+    }
 
     background: Image {
         id: passFieldBackground
-        width: passwordField.width + 10
-        x: -5
+        x: -3
+        smooth: false
+        width: 224
 
         source: "../Assets/input.png"
     }
