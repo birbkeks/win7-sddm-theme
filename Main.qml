@@ -122,7 +122,7 @@ Item {
         Rectangle {
             //width: user 60 + spacing 120 + user 60 + spacing 120 + user 60
             width: 180 * listView2.count
-            height: Screen.height / 10
+            height: 125
             color: "transparent"
             clip: true
 
