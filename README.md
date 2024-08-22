@@ -16,7 +16,11 @@
 
 <details>
   <summary>Click to view screenshots</summary>
-
+   
+![preview1](https://github.com/user-attachments/assets/63fc54cd-c2be-4c6c-ba66-ee791333821d)
+![preview2](https://github.com/user-attachments/assets/eb025f4b-0800-455a-b528-e9a0d1bc3501)
+![preview3](https://github.com/user-attachments/assets/7e1d4215-ee18-44bb-9d85-01dac853a47d)
+![preview4](https://github.com/user-attachments/assets/827790fa-12cd-40ec-89c5-6665844a72fb)
 
 </details>
 
@@ -27,16 +31,14 @@ Huge thanks to wackyideas for creating [Aero theme for Plasma](https://gitgud.io
 ## Missing Features
 Missing features from Windows 10 login screen that's planned to be added in the future:
 
-- Internet icons
 - On-Screen Keyboard
 - Successful login message [(this is a SDDM bug, waiting it to be fixed)](https://github.com/sddm/sddm/issues/1960)
 
 ## Requirements
 
 >[!IMPORTANT]
->Please install [Segoe UI Regular](https://github.com/microsoft/reactxp/raw/master/samples/TodoList/src/resources/fonts/SegoeUI-Regular.ttf),
-  [Segoe UI Light](https://github.com/microsoft/reactxp/raw/master/samples/TodoList/src/resources/fonts/SegoeUI-Light.ttf) and
-    [Segoe MDL2](https://github.com/syncfusion/xamarin-demos/raw/master/Forms/TabView/TabView.UWP/Assets/Fonts/Segoe%20MDL2%20Assets.ttf)
+>Please install [Segoe UI Regular](https://github.com/microsoft/reactxp/raw/master/samples/TodoList/src/resources/fonts/SegoeUI-Regular.ttf) and
+  [Segoe UI Light](https://github.com/microsoft/reactxp/raw/master/samples/TodoList/src/resources/fonts/SegoeUI-Light.ttf)
       font to use this SDDM theme!
 
 You only need to have SDDM installed and don't need any other extra Qt 5 or 6 plugins to install!

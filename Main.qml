@@ -19,11 +19,6 @@ Item {
         source: Qt.resolvedUrl("fonts/segoeuil.ttf")
     }
 
-    FontLoader {
-        id: iconfont
-        source: Qt.resolvedUrl("fonts/SegMDL2.ttf")
-    }
-
     Rectangle {
         id: background
         anchors.fill: parent

@@ -52,8 +52,6 @@ function font() {
     sudo wget -P /usr/share/sddm/themes/win7-sddm-theme/fonts https://github.com/birbkeks/win7-sddm-theme/raw/main/fonts/segoeui.ttf -nc
 
     sudo wget -P /usr/share/sddm/themes/win7-sddm-theme/fonts https://github.com/birbkeks/win7-sddm-theme/raw/main/fonts/segoeuil.ttf -nc
-
-    sudo wget -P /usr/share/sddm/themes/win7-sddm-theme/fonts https://github.com/birbkeks/win7-sddm-theme/raw/main/fonts/SegMDL2.ttf -nc
 }
 
 function cursor() {
